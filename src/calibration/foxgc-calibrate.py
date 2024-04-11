@@ -147,14 +147,23 @@ def stop_calibration():
 # How to use
 def help():
   messagebox.showinfo(
-    'Fox Go Cheater is now running in calibration mode',
-    'Below are the steps to follow to check whether Fox Go Cheater is tuned properly:\n\n' + 
-    '1. Open Fox Go Server application\n' +
-    '2. Open any game currently being played\n' +
-    '3. Check whether mouse pointer is following moves\n\n' +
-    'If so, you have configured Fox Go Cheater properly,\n' +
-    'otherwise keep tuning the parameters.\n\n' +
-    'Click "Stop calibration" before making any changes.'
+    'Fox Go Cheater - calibration tool',
+    'Fox Go Cheater is an application that uses optical board recognition ' +
+    'to synchronize Fox Go application\'s board position with AI\'s one, therefore ' +
+    'we need to make sure that the absolute screen X, Y corrdinates, corresponding to ' +
+    'board vertices perfectly match with program\'s internal values.\n\n' +
+    'There are 3 values to adjust: cell size (default value is 32) and ' +
+    'board top left corner\'s X, Y offsets (default values are 164, 56). ' +
+    'If your screen resolution is 1366x768 default values should work.\n\n' +
+    'To check this out open Fox Go server application, open any ongoing game, ' +
+    'then click "Check" button. When "A19" corner is selected ' +
+    'mouse pointer should move to board top left corner. Choose "T19", "A1" and "T1" ' +
+    'to check top right, bottom left and bottom right corners respectively.\n\n' +
+    'If mouse pointer perfectly lands on corresponding squares points you can click ' +
+    '"start" button - mouse pointer should now follow moves being made on board. ' +
+    'If you can see mouse pointer perfectly following moves played by players you ' +
+    'may close this tool and start playing on Fox using AI, otherwise you need to adjust ' +
+    'three values.\n\n'
   )
 
 # Create UI
