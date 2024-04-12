@@ -149,7 +149,7 @@ def stop_calibration():
 # How to use
 def help():
   messagebox.showinfo(
-    'Fox Go Cheater - calibration tool',
+    'Fox Go Calibrate',
     'Fox Go Cheater is an application that uses optical board recognition ' +
     'to synchronize Fox Go application\'s board position with AI\'s one, therefore ' +
     'we need to make sure that the absolute screen X, Y corrdinates, corresponding to ' +
@@ -171,7 +171,7 @@ def help():
 # Create UI
 load_settings()
 root = tk.Tk()
-root.title('Fox Go Cheater')
+root.title('Fox Go Calibrate')
 root.iconbitmap('foxwq.ico')
 selected_square = tk.StringVar()
 selected_square.set('A19')
