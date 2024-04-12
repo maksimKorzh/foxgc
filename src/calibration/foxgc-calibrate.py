@@ -55,8 +55,10 @@ def locate_stone(color):
   try:
     path = 'fox-' + color + '.png'
     stone = pg.locateOnScreen(path)
-    col = int((stone.left - offset_x) / cell_size)+1
-    row = int((stone.top - offset_y) / cell_size)+1
+    col = int((stone.left - offset_x) / cell_size)
+    row = int((stone.top - offset_y) / cell_size)
+    if stone.left - offset_x > 0: col += 1
+    if stone.top - offset_y > 0: row += 1
     move = 'ABCDEFGHJKLMNOPQRST'[col] + str(19-row)
     return move
   except: return ''
@@ -170,10 +172,10 @@ def help():
 load_settings()
 root = tk.Tk()
 root.title('Fox Go Cheater')
-root.iconphoto(True, tk.PhotoImage(file='foxwq.png'))
+root.iconbitmap('foxwq.ico')
 selected_square = tk.StringVar()
 selected_square.set('A19')
-square_option = ttk.Combobox(root, width=10, textvariable=selected_square, values=['A19', 'T19', 'A1', 'T1'], state='readonly')
+square_option = ttk.Combobox(root, width=10, textvariable=selected_square, values=['A19', 'T19', 'A1', 'T1'])
 square_option.grid(row=0, column=0, sticky='ew')
 cell_size_entry = ttk.Entry(root, width=10)
 cell_size_entry.grid(row=0, column=1, sticky='ew')
