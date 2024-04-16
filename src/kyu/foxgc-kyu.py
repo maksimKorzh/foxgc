@@ -162,7 +162,6 @@ def load_settings():
   try:
     with open('settings.json') as f:
       settings = json.loads(f.read())
-      cell_size = settings['cell_size']
       offset_x = settings['offset_x']
       offset_y = settings['offset_y']
   except:
