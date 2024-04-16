@@ -104,7 +104,7 @@ def play_game():
   init_coords()
   c = init_engine()
   move_count = 0
-  try: move_gen = int(move_start_entry.get())
+  try: move_gen = int(selected_move.get())
   except: move_gen = 1
   move_start = move_gen if side_to_move else move_gen+1
   side_to_move = 0
@@ -177,6 +177,7 @@ def start_playing(side):
   cheater_running = True
   cheater_thread = threading.Thread(target=play_game)
   cheater_thread.start()
+  root.title('Fox Go Cheater [6K] (Match)')
 
 # Stop calibration
 def stop_playing():
@@ -184,41 +185,39 @@ def stop_playing():
   cheater_running = False
   if cheater_thread and cheater_thread.is_alive():
     cheater_thread.join()
+    root.title('Fox Go Cheater [6K] (Idle)')
 
 # How to use
 def help():
   messagebox.showinfo(
     'Fox Go Cheater [6K]',
-    'Text field on the left is the move number when the engine jumps in. ' +
-    'By default it\'s set to "1" which means engine would start playing from the ' +
-    'very beginning of the game.\n\n You may want to input some opening moves ' +
-    'by yourself, to do so set the value to say 6, in this case engine would ' +
-    'start playing after move 6, before that it would be following your and ' +
-    'your opponent\'s moves by moving mouse pointer to the last move made ' +
-    'on board.\n\n Wait until engine recognizes the last move played, otherwise ' +
-    'sync would be broken and engine would fail to play. Once move start is ' +
-    'set up open Fox Go app, start a game and click "Play black" or "Play white" ' +
-    'depending on which color you play. Happy cheating!'
+    'Open Fox Go app, start a game and click "Play Black" or "Play White" ' +
+    'depending on which color you play. Click "Stop" to continue playing on your own.\n\n'
+    'If you want to input some opening moves change the value of the option box ' +
+    'to specify the move after which AI would jump in.\n\n' +
+    'Wait until Fox Go Cheater recognizes the last move played, otherwise ' +
+    'sync would be broken and AI would fail to play.'
   )
 
 # Create UI
 load_settings()
 root = tk.Tk()
-root.title('Fox Go Cheater [6K]')
+root.title('Fox Go Cheater [6K] (Idle)')
 root.iconbitmap('foxwq.ico')
-move_start_entry = ttk.Entry(root, width=3)
-move_start_entry.grid(row=0, column=0, sticky='ew')
-move_start_entry.insert(0, '1')
-play_black_button = ttk.Button(root, text='Play Black', command=lambda: start_playing(1))
+selected_move = tk.StringVar()
+move_start_option = ttk.Combobox(root, width=2, textvariable=selected_move, values=['1', '2', '4', '6', '8', '10', '12'])
+move_start_option.grid(row=0, column=0)
+selected_move.set('1')
+play_black_button = ttk.Button(root, width=15, text='Play Black', command=lambda: start_playing(1))
 play_black_button.grid(row=0, column=1, sticky='ew')
-play_white_button = ttk.Button(root, text='Play White', command=lambda: start_playing(0))
+play_white_button = ttk.Button(root, width=15, text='Play White', command=lambda: start_playing(0))
 play_white_button.grid(row=0, column=2, sticky='ew')
-stop_button = ttk.Button(root, text='Stop', command=stop_playing)
+stop_button = ttk.Button(root, width=15, text='Stop', command=stop_playing)
 stop_button.grid(row=0, column=3, sticky='ew')
-help_button = ttk.Button(root, text='Help', command=help)
-help_button.grid(row=0, column=4, sticky='ew')
 
 # Run app
 root.protocol("WM_DELETE_WINDOW", on_window_close)
 root.resizable(False, False)
+root.attributes('-topmost', True)
+help()
 root.mainloop()
