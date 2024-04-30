@@ -168,7 +168,7 @@ def load_settings():
     messagebox.showerror('Error', 'File "settings.json" is not found, run "foxgc-calibrate.exe" first.')
     sys.exit(1)
 
-# Run calibration in background
+# Run AI in background
 def start_playing(side):
   global cheater_thread, cheater_running, side_to_move
   side_to_move = side
@@ -178,7 +178,7 @@ def start_playing(side):
   cheater_thread.start()
   root.title('Fox Go Cheater [6K] (Match)')
 
-# Stop calibration
+# Stop AI thread
 def stop_playing():
   global cheater_thread, cheater_running
   cheater_running = False
